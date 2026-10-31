@@ -1,0 +1,166 @@
+{
+  "entities": {
+    "Worker": {
+      "title": "Worker",
+      "description": "Employee profile, job role, and compensation",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "age": { "type": "number" },
+        "gender": { "type": "string", "enum": ["Male", "Female", "Other"] },
+        "role": { "type": "string" },
+        "status": { "type": "string", "enum": ["Active", "Inactive"] },
+        "salary": { "type": "number" },
+        "joinedDate": { "type": "string" },
+        "contact": { "type": "string" }
+      },
+      "required": ["id", "name", "role", "status"]
+    },
+    "WorkerDailyStatus": {
+      "title": "WorkerDailyStatus",
+      "description": "Day-wise attendance tracking for workforce",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "workerId": { "type": "string" },
+        "date": { "type": "string" },
+        "status": { "type": "string", "enum": ["Active", "Inactive"] }
+      },
+      "required": ["workerId", "date", "status"]
+    },
+    "Production": {
+      "title": "Production",
+      "description": "Daily agarbatti batch output",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "date": { "type": "string" },
+        "scentName": { "type": "string" },
+        "quantity": { "type": "number" },
+        "unit": { "type": "string", "enum": ["kg", "units"] },
+        "operatorName": { "type": "string" },
+        "batchNumber": { "type": "string" },
+        "notes": { "type": "string" }
+      },
+      "required": ["id", "date", "scentName", "quantity", "unit", "batchNumber"]
+    },
+    "FragranceScent": {
+      "title": "FragranceScent",
+      "description": "Fragrance formula catalog",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string", "enum": ["Flora", "Woody", "Traditional", "Fruity", "Spiritual"] },
+        "addedDate": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "required": ["id", "name", "category"]
+    },
+    "StockMaterial": {
+      "title": "StockMaterial",
+      "description": "Raw inventory material and consumption rates",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "materialName": { "type": "string" },
+        "boughtDate": { "type": "string" },
+        "boughtQuantity": { "type": "number" },
+        "unit": { "type": "string" },
+        "supplier": { "type": "string" },
+        "costPerUnit": { "type": "number" },
+        "minimumThreshold": { "type": "number" },
+        "consumptionFactorPerKgProduction": { "type": "number" },
+        "notes": { "type": "string" },
+        "manualAdjustment": { "type": "number" }
+      },
+      "required": ["id", "materialName", "boughtQuantity", "unit"]
+    },
+    "Bill": {
+      "title": "Bill",
+      "description": "Factory expenses and utility bills",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "expenseName": { "type": "string" },
+        "category": { "type": "string" },
+        "date": { "type": "string" },
+        "amount": { "type": "number" },
+        "paymentStatus": { "type": "string", "enum": ["Paid", "Pending"] },
+        "invoiceNumber": { "type": "string" },
+        "notes": { "type": "string" },
+        "isSalaryConfidential": { "type": "boolean" }
+      },
+      "required": ["id", "expenseName", "category", "date", "amount", "paymentStatus"]
+    },
+    "Purchase": {
+      "title": "Purchase",
+      "description": "Vendor purchase transactions",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "companyName": { "type": "string" },
+        "materialName": { "type": "string" },
+        "quantity": { "type": "number" },
+        "unit": { "type": "string" },
+        "totalCost": { "type": "number" },
+        "date": { "type": "string" },
+        "invoiceNumber": { "type": "string" },
+        "notes": { "type": "string" }
+      },
+      "required": ["id", "companyName", "materialName", "quantity", "unit", "totalCost", "date"]
+    },
+    "Sell": {
+      "title": "Sell",
+      "description": "Sales and consignment dispatches",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "companyName": { "type": "string" },
+        "productName": { "type": "string" },
+        "quantity": { "type": "number" },
+        "unit": { "type": "string" },
+        "moneyEarned": { "type": "number" },
+        "date": { "type": "string" },
+        "invoiceNumber": { "type": "string" },
+        "notes": { "type": "string" }
+      },
+      "required": ["id", "companyName", "productName", "quantity", "unit", "moneyEarned", "date"]
+    }
+  },
+  "firestore": {
+    "/workers/{workerId}": {
+      "schema": "Worker",
+      "description": "Workforce records"
+    },
+    "/workerDailyStatuses/{statusId}": {
+      "schema": "WorkerDailyStatus",
+      "description": "Day-wise worker attendance records"
+    },
+    "/productions/{productionId}": {
+      "schema": "Production",
+      "description": "Manufacturing batches"
+    },
+    "/scents/{scentId}": {
+      "schema": "FragranceScent",
+      "description": "Fragrance formula catalog"
+    },
+    "/stocks/{stockId}": {
+      "schema": "StockMaterial",
+      "description": "Raw material stock inventory"
+    },
+    "/bills/{billId}": {
+      "schema": "Bill",
+      "description": "Factory bills and operating costs"
+    },
+    "/purchases/{purchaseId}": {
+      "schema": "Purchase",
+      "description": "Supplier purchase records"
+    },
+    "/sells/{sellId}": {
+      "schema": "Sell",
+      "description": "Distributor sales consignments"
+    }
+  }
+}

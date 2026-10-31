@@ -1,0 +1,43 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Connection health check document
+    match /test/{docId} {
+      allow read, write: if true;
+    }
+
+    // Factory collections
+    match /workers/{workerId} {
+      allow read, write: if true;
+    }
+
+    match /workerDailyStatuses/{statusId} {
+      allow read, write: if true;
+    }
+
+    match /productions/{productionId} {
+      allow read, write: if true;
+    }
+
+    match /scents/{scentId} {
+      allow read, write: if true;
+    }
+
+    match /stocks/{stockId} {
+      allow read, write: if true;
+    }
+
+    match /bills/{billId} {
+      allow read, write: if true;
+    }
+
+    match /purchases/{purchaseId} {
+      allow read, write: if true;
+    }
+
+    match /sells/{sellId} {
+      allow read, write: if true;
+    }
+  }
+}

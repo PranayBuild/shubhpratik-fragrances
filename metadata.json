@@ -1,0 +1,6 @@
+{
+  "name": "SHUBHPRATIK Fragrances Inventory",
+  "description": "Premium inventory management, production tracking, and workforce system for SHUBHPRATIK Fragrances manufacturing.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
